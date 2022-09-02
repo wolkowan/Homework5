@@ -6,13 +6,15 @@
 
 int[] EnterRandomArray()
 {
-    int[] array = new int[10];
+    System.Console.WriteLine("Укажите размер массива");
+    int N = Convert.ToInt32(Console.ReadLine());
+    int[] array = new int[N];
 
     for (int i = 0; i < array.Length; i++)
     {
         array[i] = new Random().Next(100, 1000);
     }
-
+    Console.WriteLine($"Массив заполненный случайными положительными трёхзначными числами: {String.Join(", ", array)}");
     return array;
 }
 
@@ -30,7 +32,7 @@ void EvenCount(int[] array)
             count++;
         }
     }
-    Console.WriteLine($"Массив заполненный случайными положительными трёхзначными числами: {String.Join(", ", array)}");
+    
     Console.WriteLine($"Количество чётных чисел в массиве {count}");
 }
 
@@ -40,16 +42,19 @@ void EvenCount(int[] array)
 
 void SummInOddPositions(int[] array)
 {
-    int summ = 0;
+    int sum1 = 0;
+    int sum2 = 1;
     for (int i = 0; i < array.Length; i++)
     {
         if (i % 2 != 0)
         {
-            summ += array[i];
+            sum1 += array[i];
         }
+        else sum2 += array[i];
     }
 
-    Console.WriteLine($"Сумма элементов, стоящих на нечётных позициях: {summ}");
+     Console.WriteLine($"Сумма элементов с нечетными индексами: {sum1}");
+    Console.WriteLine($"Сумма элементов, стоящих на нечетных позициях: {sum2}");
 }
 
 
@@ -73,9 +78,9 @@ void DifferenceBetweenMaxMin(int[] array)
             array[i] = temp;
         }
     }
-    int DifferenceBetweenMaxMin = Math.Abs(array[0] + array[array.Length - 1]);
+    int DifferenceBetweenMaxMin = Math.Abs(array[0] - array[array.Length - 1]);
    // Console.WriteLine($"rangered array: {String.Join(", ", array)}");
-    System.Console.WriteLine($"Разница между максимальным и минимальным значением элементов массива: {DifferenceBetweenMaxMin}");
+    System.Console.WriteLine($"разница между максимальным и минимальным элементами массива = {DifferenceBetweenMaxMin}");
 }
 
 
@@ -87,7 +92,8 @@ void DifferenceBetweenMaxMin(int[] array)
 
 void MultiplyPairs(int[] array)
 {
-    for (int i = 0; i < array.Length; i++)
+
+    for (int i = 0; i < array.Length; ++i)
     {
         array[i] = array[i] * array[array.Length - 1];
         array = array.SkipLast(1).ToArray();
@@ -97,8 +103,11 @@ void MultiplyPairs(int[] array)
 }
 
 
-
+System.Console.WriteLine("***Задача 34***");
 EvenCount(EnterRandomArray());
+System.Console.WriteLine("***Задача 36***");
 SummInOddPositions(EnterRandomArray());
+System.Console.WriteLine("***Задача 38***");
 DifferenceBetweenMaxMin(EnterRandomArray());
+System.Console.WriteLine("***Задача 37***");
 MultiplyPairs(EnterRandomArray());
